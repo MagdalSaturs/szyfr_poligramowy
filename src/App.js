@@ -6,10 +6,11 @@ function App() {
   const text = React.createRef();
 
   const Code = (e) => {
+    e.preventDefault();
     const textValue = text.current.value;
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;';
 
-    const code = (textValue) => {
+    const code = () => {
       let result = '';
       for (let i = 0; i < textValue.length; i++) {
         if (textValue[i] === ' ') {
@@ -26,10 +27,11 @@ function App() {
   };
 
   const Decode = (e) => {
+    e.preventDefault();
     const textValue = text.current.value;
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-
-      const decode = (textValue) => {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;';
+    
+    const decode = () => {
         let resultDecode = '';
         for (let i = 0; i < textValue.length; i++) {
           if (textValue[i] === ' ') {
@@ -50,11 +52,9 @@ function App() {
       <div className='App'>
         <form>
           <input ref={text} placeholder='Tekst do zaszyfrowania/odszyfrowania'></input>
-          <button onClick={e => Decode(e)} >Odszyfruj</button>
-          <button onClick={e => Code(e)}>Zaszyfruj</button>
+          <button onClick={Decode} >Odszyfruj</button>
+          <button onClick={Code}>Zaszyfruj</button>
         </form>
-      </div>
-      <div className='Output'>
         <p>Wynik:</p>
         <p>{tekst}</p>
       </div>
