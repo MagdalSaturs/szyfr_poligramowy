@@ -8,25 +8,25 @@ function App() {
   const Code = (e) => {
     e.preventDefault();
     const textValue = text.current.value;
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźż';
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźżABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     const codeText = (textValue) => {
-      let codeText = '';
+      let result = '';
       for (let i = 0; i < textValue.length; i++) {
         const letter = textValue[i];
-        const letterIndex = alphabet.indexOf(letter);
-        const nextLetter = textValue[i + 1];
-        const nextLetterIndex = alphabet.indexOf(nextLetter);
-
-        if (letterIndex !== -1) {
-          codeText += alphabet[letterIndex + nextLetterIndex];
+        const index = alphabet.indexOf(letter);
+        if (index === -1) {
+          result += letter;
+        } else {
+          const newIndex = (index + 3) % alphabet.length;
+          result += alphabet[newIndex];
         }
       }
-      return codeText;
-    }
+      return result;
+    };
     setTekts(codeText(textValue));
     console.log(codeText(textValue));
-  };
+  }
 
   const Decode = (e) => {
     e.preventDefault();
@@ -34,18 +34,19 @@ function App() {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźż';
 
     const decodeText = (textValue) => {
-      let decodeText = '';
-      for (let i = 0; i > textValue.length; i++) {
+      let result = '';
+      for (let i = 0; i < textValue.length; i++) {
         const letter = textValue[i];
-        const letterIndex = alphabet.indexOf(letter);
-        const nextLetter = textValue[i - 1];
-        const nextLetterIndex = alphabet.indexOf(nextLetter);
-
-        if (letterIndex !== -1) {
-          decodeText += alphabet[letterIndex - nextLetterIndex];
+        const index = alphabet.indexOf(letter);
+        if (index === -1) {
+          result += letter;
+        } else {
+          const newIndex = (index - 3) % alphabet.length;
+          result += alphabet[newIndex];
         }
       }
-      return decodeText;
+      return result;
+
     }
     setTekts(decodeText(textValue));
     console.log(decodeText(textValue));
