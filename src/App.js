@@ -31,7 +31,7 @@ function App() {
   const Decode = (e) => {
     e.preventDefault();
     const textValue = text.current.value;
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźż';
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźżABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     const decodeText = (textValue) => {
       let result = '';
