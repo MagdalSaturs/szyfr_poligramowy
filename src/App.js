@@ -5,27 +5,28 @@ function App() {
   const [tekst, setTekts] = React.useState([]);
   const text = React.createRef();
 
+
   const Code = (e) => {
     e.preventDefault();
     const textValue = text.current.value;
     const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźżABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    const codeText = (textValue) => {
-      let result = '';
-      for (let i = 0; i < textValue.length; i++) {
-        const letter = textValue[i];
-        const index = alphabet.indexOf(letter);
-        if (index === -1) {
-          result += letter;
-        } else {
-          const newIndex = (index + 3) % alphabet.length;
-          result += alphabet[newIndex];
-        }
+    //podział tekstu na tablice po 2 znaki
+    //zaszyfrowanie 2 znaków na jeden (pamiętamy o tym jakie znaki zamieniamy na jaki)
+    //zamiana tablicy na string
+
+    const tab = textValue.split('').map((letter, index) => {
+      if (index % 2 === 0) {
+        const firstLetter = alphabet.indexOf(letter);
+        const secondLetter = alphabet.indexOf(textValue[index + 1]);
+        const newLetter = alphabet[firstLetter + secondLetter];
+        return newLetter;
       }
-      return result;
-    };
-    setTekts(codeText(textValue));
-    console.log(codeText(textValue));
+    }).join('');
+
+    setTekts(tab)
+    console.log(tab);
+
   }
 
   const Decode = (e) => {
@@ -33,24 +34,8 @@ function App() {
     const textValue = text.current.value;
     const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźżABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    const decodeText = (textValue) => {
-      let result = '';
-      for (let i = 0; i < textValue.length; i++) {
-        const letter = textValue[i];
-        const index = alphabet.indexOf(letter);
-        if (index === -1) {
-          result += letter;
-        } else {
-          const newIndex = (index - 3) % alphabet.length;
-          result += alphabet[newIndex];
-        }
-      }
-      return result;
+    //
 
-    }
-    setTekts(decodeText(textValue));
-    console.log(decodeText(textValue));
-    
   };
 
   return (
