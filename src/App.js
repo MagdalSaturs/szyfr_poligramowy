@@ -11,10 +11,6 @@ function App() {
     const textValue = text.current.value;
     const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźżABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    //podział tekstu na tablice po 2 znaki
-    //zaszyfrowanie 2 znaków na jeden (pamiętamy o tym jakie znaki zamieniamy na jaki)
-    //zamiana tablicy na string
-
     const tab = textValue.split('').map((letter, index) => {
       if (index % 2 === 0) {
         const firstLetter = alphabet.indexOf(letter);
@@ -34,7 +30,7 @@ function App() {
     const textValue = text.current.value;
     const alphabet = 'abcdefghijklmnopqrstuvwxyz.,!?:;ąćęłńóśźżABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    //
+    
 
   };
 
